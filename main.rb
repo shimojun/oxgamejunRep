@@ -14,7 +14,6 @@ def transnum(inputnum,addressnum)
     addressnum = 2
     when 21
     addressnum = 3
-    
     when 22
     addressnum = 4
     when 23
