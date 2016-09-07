@@ -1,10 +1,6 @@
 board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
 
-puts "数値を入力してください。（真ん中 ＝ 22）"
-inputnum = gets.to_i
-addressnum=0
-
-def transnum(inputnum,addressnum)
+def transnum(inputnum)
     case inputnum
     when 11
     addressnum = 0
@@ -26,15 +22,18 @@ def transnum(inputnum,addressnum)
     addressnum = 8
     else
         puts "指定した場所がありません"
+    end
+    return  addressnum
 end
 
-transnum(inputnum,addressnum)
-board[addressnum]='o'
+puts "数値を入力してください。（真ん中 ＝ 22）"
+inputnum = gets.to_i
+board[transnum(inputnum)]='o'
 
-puts "----------"
+puts "-------"
 for i in 0..9
-    if i%3==0
-        puts "|","----------"
+    if i%3==0 && 0<i
+        puts "|","-------"
     end
-    print "|"　,  board[i]
+    print "|",board[i]
 end
