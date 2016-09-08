@@ -64,7 +64,7 @@ while true do
     #出力部
     puts '-------'
     for i in 0..board.length
-        print "|",board[i]
+        print '|',board[i]
         if i%3==2 && 0<i
             puts '|','-------'
         end
@@ -132,6 +132,7 @@ while true do
             lineup[j]+=1
         end
     end
+
 
     for i in 0..lineup.length
         if lineup[i]==3
