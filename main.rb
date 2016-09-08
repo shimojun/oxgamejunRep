@@ -21,7 +21,7 @@ def transnum(inputnum)
         addressnum = 8
         else
             puts "指定した場所がありません"
-            return -1
+            return 
     end
     return  addressnum
 end
@@ -36,25 +36,33 @@ def changeturn(turn)
 end
 
 #mainの処理
-board = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
+board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
 turn = 'o'
-print "先行は",turn,"です。¥n"
-
+print "先行は"+turn+"です。"
+puts ''
 while true do 
 
     #初期化部
         lineup=[0,0,0,0,0,0,0,0]
-        addressnum = -1
         endflg = false
+        changeflg = false
     #入力部
     while true do
         puts "数値を入力してください。（左下 ＝ 31）"
         inputnum = gets.to_i
         addressnum=transnum(inputnum)
-        if board[addressnum] == ' ' || addressnum == -1
-            break
+        #入力判断
+        p addressnum
+         p board[addressnum]
+        if 0<=addressnum && addressnum<=8
+            if board[addressnum]==' ' 
+                break
+            else
+                puts "すでに埋まっています"
+            end
         else
             puts "もう一度入力してく下さい"
+
         end
     end
 
@@ -62,6 +70,15 @@ while true do
     board[addressnum]=turn
     
     #出力部
+=begin
+    for i in 0..board.length-1
+        if i%3==0
+            puts '-------','|'
+        end
+        print board[i],'|'
+    end
+    puts '-------'
+=end
     puts '-------'
     for i in 0..board.length-1
         print '|',board[i]
@@ -69,6 +86,7 @@ while true do
             puts '|','-------'
         end
     end
+
     #判断部
     for i in 0..board.length #マスが埋まった時の処理
         if board[i]==' '
@@ -146,7 +164,7 @@ while true do
     break
     end
     #順番切り替え
-    turn=changeturn(turn)
-    print "次は",turn,"の番です。"
-    puts
+        turn=changeturn(turn)
+        print "次は",turn,"の番です。"
+        puts ''
 end
