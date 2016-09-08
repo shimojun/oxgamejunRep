@@ -39,7 +39,7 @@ while true do
 lineup=[0,0,0,0,0,0,0,0]
 endflg = false
 changeflg = false
-sellflg = false
+blank = 0
 #入力部
 while true do
     puts "数値を入力してください。（左下 ＝ 31）"
@@ -68,17 +68,10 @@ end
 
 #終了判断部
 for i in 0..board.length-1 #マスが埋まった時の処理
-    if board[i] == ' ' 
-        sellflg = true
-        break
-    end 
+    if board[i] == ' '
+        blank+=1
+    end
 end
-
-if !sellflg
-    puts '今回は引き分けです'
-    endflg=true
-end
-
 #3つ並んだ時の処理
 #横
 j=0
@@ -134,13 +127,18 @@ end
 
 #勝敗判定
 for i in 0..lineup.length-1
-    if lineup[i]==3 
-    printf("%s の勝ちです。\n",turn)
-    endflg=true
+    if lineup[i]==3
+    clearflg=true
     end
 end
 #ゲーム終了
-if endflg then break end
+if clearflg
+printf("%s の勝ちです。\n",turn)
+break
+elsif blank==0
+puts '今回は引き分けです。'
+break
+end
 #順番切り替え
 turn=changeturn(turn)
 printf("次は %s です。\n",turn)
