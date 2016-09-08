@@ -1,3 +1,15 @@
+def startgame
+    case rand(2)
+        when 0
+        turn = 'o'
+        when 1
+        turn = 'x'
+    end
+    print "先行は"+turn+"です。"
+    puts ''
+    return turn
+end
+
 #入力された数値から配列の番地を返す。予想外の数値は−1を返す。
 def transnum(inputnum)
     case inputnum
@@ -21,7 +33,7 @@ def transnum(inputnum)
         addressnum = 8
         else
             puts "指定した場所がありません"
-            return 
+            return -1
     end
     return  addressnum
 end
@@ -36,10 +48,11 @@ def changeturn(turn)
 end
 
 #mainの処理
+
+
 board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
-turn = 'o'
-print "先行は"+turn+"です。"
-puts ''
+turn = startgame
+
 while true do 
 
     #初期化部
@@ -52,8 +65,6 @@ while true do
         inputnum = gets.to_i
         addressnum=transnum(inputnum)
         #入力判断
-        p addressnum
-         p board[addressnum]
         if 0<=addressnum && addressnum<=8
             if board[addressnum]==' ' 
                 break
@@ -70,15 +81,6 @@ while true do
     board[addressnum]=turn
     
     #出力部
-=begin
-    for i in 0..board.length-1
-        if i%3==0
-            puts '-------','|'
-        end
-        print board[i],'|'
-    end
-    puts '-------'
-=end
     puts '-------'
     for i in 0..board.length-1
         print '|',board[i]
@@ -87,8 +89,8 @@ while true do
         end
     end
 
-    #判断部
-    for i in 0..board.length #マスが埋まった時の処理
+    #終了判断部
+    for i in 0..board.length-1 #マスが埋まった時の処理
         if board[i]==' '
             endflg=false
             break
@@ -101,57 +103,57 @@ while true do
     #3つ並んだ時の処理
     #横
     j=0
-    for i in 0..3
+    for i in 0..2
         if board[i]==turn
             lineup[j]+=1
         end
     end
     j+=1
-    for i in 3..6
+    for i in 3..5
         if board[i]==turn
             lineup[j]+=1
         end
     end
     j+=1
-    for i in 6..9
+    for i in 6..8
         if board[i]==turn
             lineup[j]+=1
         end
     end
     #縦
     j+=1
-    for i in 0..3
+    for i in 0..2
         if board[i*3]==turn
             lineup[j]+=1
         end
     end
     j+=1
-    for i in 0..3
+    for i in 0..2
         if board[i*3+1]==turn
             lineup[j]+=1
         end
     end    
     j+=1
-    for i in 0..3
+    for i in 0..2
         if board[i*3+2]==turn
             lineup[j]+=1
         end
     end
     #斜め
     j+=1
-    for i in 0..3
+    for i in 0..2
         if board[i*4]==turn
             lineup[j]+=1
         end
     end
     j+=1
-    for i in 1..4
+    for i in 1..3
         if board[i*2]==turn
             lineup[j]+=1
         end
     end
 
-
+    #勝敗判定
     for i in 0..lineup.length
         if lineup[i]==3
             print turn,"の勝ちです。"
@@ -161,7 +163,7 @@ while true do
     end
 
     if endflg
-    break
+     break
     end
     #順番切り替え
         turn=changeturn(turn)
