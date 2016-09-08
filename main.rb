@@ -1,4 +1,6 @@
 
+
+
 #入力された数値から配列の番地を返す。予想外の数値は−1を返す。
 def transnum(inputnum)
     case inputnum
@@ -37,7 +39,7 @@ while true do
 lineup=[0,0,0,0,0,0,0,0]
 endflg = false
 changeflg = false
-
+sellflg = false
 #入力部
 while true do
     puts "数値を入力してください。（左下 ＝ 31）"
@@ -67,10 +69,14 @@ end
 #終了判断部
 for i in 0..board.length-1 #マスが埋まった時の処理
     if board[i] == ' ' 
-        endflg = false 
+        sellflg = true
         break
-    else endflg = true
     end 
+end
+
+if !sellflg
+    puts '今回は引き分けです'
+    endflg=true
 end
 
 #3つ並んだ時の処理
@@ -139,3 +145,4 @@ if endflg then break end
 turn=changeturn(turn)
 printf("次は %s です。\n",turn)
 end
+
