@@ -36,7 +36,7 @@ def changeturn(turn)
 end
 
 #mainの処理
-board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+board = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 turn = 'o'
 print "先行は",turn,"です。¥n"
 
@@ -51,7 +51,7 @@ while true do
         puts "数値を入力してください。（左下 ＝ 31）"
         inputnum = gets.to_i
         addressnum=transnum(inputnum)
-        if board[addressnum]==' ' || addressnum==-1
+        if board[addressnum] == ' ' || addressnum == -1
             break
         else
             puts "もう一度入力してく下さい"
@@ -60,10 +60,10 @@ while true do
 
     #演算部
     board[addressnum]=turn
-
+    
     #出力部
     puts '-------'
-    for i in 0..board.length
+    for i in 0..board.length-1
         print '|',board[i]
         if i%3==2 && 0<i
             puts '|','-------'
@@ -136,7 +136,8 @@ while true do
 
     for i in 0..lineup.length
         if lineup[i]==3
-            print turn,"の勝ちです。¥n"
+            print turn,"の勝ちです。"
+            puts ''
             endflg=true
         end
     end
@@ -147,4 +148,5 @@ while true do
     #順番切り替え
     turn=changeturn(turn)
     print "次は",turn,"の番です。"
+    puts
 end
