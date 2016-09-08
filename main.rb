@@ -43,7 +43,7 @@ print "先行は",turn,"です。¥n"
 while true do 
 
     #初期化部
-        lineup=[0,0,0,0,0,0,0]
+        lineup=[0,0,0,0,0,0,0,0]
         addressnum = -1
         endflg = false
     #入力部
@@ -62,11 +62,11 @@ while true do
     board[addressnum]=turn
 
     #出力部
-    puts "-------"
+    puts '-------'
     for i in 0..board.length
         print "|",board[i]
         if i%3==2 && 0<i
-            puts "|","-------"
+            puts '|','-------'
         end
     end
     #判断部
@@ -78,9 +78,10 @@ while true do
             endflg=true
         end 
     end
-=begin
+
+
     #3つ並んだ時の処理
-    #縦
+    #横
     j=0
     for i in 0..3
         if board[i]==turn
@@ -99,7 +100,7 @@ while true do
             lineup[j]+=1
         end
     end
-    #横
+    #縦
     j+=1
     for i in 0..3
         if board[i*3]==turn
@@ -126,8 +127,8 @@ while true do
         end
     end
     j+=1
-    for i in 0..3
-        if board[(i+1)*2]==turn
+    for i in 1..4
+        if board[i*2]==turn
             lineup[j]+=1
         end
     end
@@ -138,11 +139,11 @@ while true do
             endflg=true
         end
     end
-=end
+
     if endflg
     break
     end
     #順番切り替え
     turn=changeturn(turn)
-
+    print "次は",turn,"の番です。"
 end
